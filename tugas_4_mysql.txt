@@ -1,0 +1,156 @@
+Microsoft Windows [Version 10.0.19042.1415]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\Arifin>cd ..
+
+C:\Users>cd ..
+
+C:\>xampp\mysql\bin\mysql -u root
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 8
+Server version: 10.4.22-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> CREATE DATABASE IF NOT EXISTS permainan;
+Query OK, 1 row affected (0.001 sec)
+
+MariaDB [(none)]> use permainan
+Database changed
+MariaDB [permainan]> CREATE TABLE IF NOT EXISTS sepakbola
+    -> (id_pemain INT(11) PRIMARY KEY AUTO_INCREMENT);
+Query OK, 0 rows affected (0.039 sec)
+
+MariaDB [permainan]> desc sepakbola
+    -> ;
++-----------+---------+------+-----+---------+----------------+
+| Field     | Type    | Null | Key | Default | Extra          |
++-----------+---------+------+-----+---------+----------------+
+| id_pemain | int(11) | NO   | PRI | NULL    | auto_increment |
++-----------+---------+------+-----+---------+----------------+
+1 row in set (0.026 sec)
+
+MariaDB [permainan]> ALTER TABLE sepakbola
+    -> ADD (nama_pemain VARCHAR(100));
+Query OK, 0 rows affected (0.013 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [permainan]> desc sepakbola
+    -> ;
++-------------+--------------+------+-----+---------+----------------+
+| Field       | Type         | Null | Key | Default | Extra          |
++-------------+--------------+------+-----+---------+----------------+
+| id_pemain   | int(11)      | NO   | PRI | NULL    | auto_increment |
+| nama_pemain | varchar(100) | YES  |     | NULL    |                |
++-------------+--------------+------+-----+---------+----------------+
+2 rows in set (0.025 sec)
+
+MariaDB [permainan]> ALTER TABLE sepakbola
+    -> ADD (usia_pemain INT(2) NO);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'NO)' at line 2
+MariaDB [permainan]> ALTER TABLE sepakbola
+    -> ADD (usia_pemain NOT INT(2));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'NOT INT(2))' at line 2
+MariaDB [permainan]> ADD (usia_pemain INT(2) NOT);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'ADD (usia_pemain INT(2) NOT)' at line 1
+MariaDB [permainan]> ALTER TABLE sepakbola
+    -> ADD (usia_pemain INT(2) NOT);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')' at line 2
+MariaDB [permainan]> ALTER TABLE sepakbola
+    -> ADD usia_pemain INT(2);
+Query OK, 0 rows affected (0.017 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [permainan]> DESC sepakbola;
++-------------+--------------+------+-----+---------+----------------+
+| Field       | Type         | Null | Key | Default | Extra          |
++-------------+--------------+------+-----+---------+----------------+
+| id_pemain   | int(11)      | NO   | PRI | NULL    | auto_increment |
+| nama_pemain | varchar(100) | YES  |     | NULL    |                |
+| usia_pemain | int(2)       | YES  |     | NULL    |                |
++-------------+--------------+------+-----+---------+----------------+
+3 rows in set (0.024 sec)
+
+MariaDB [permainan]> ALTER TABLE sepakbola
+    -> DROP COLUMN nama_pemain, DROP COLUMN usia_pemain;
+Query OK, 0 rows affected (0.024 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [permainan]> DESC sepakbola;
++-----------+---------+------+-----+---------+----------------+
+| Field     | Type    | Null | Key | Default | Extra          |
++-----------+---------+------+-----+---------+----------------+
+| id_pemain | int(11) | NO   | PRI | NULL    | auto_increment |
++-----------+---------+------+-----+---------+----------------+
+1 row in set (0.027 sec)
+
+MariaDB [permainan]> ALTER TABLE sepakbola
+    -> ADD (nama_pemain VARCHAR(100) NOT NULL);
+Query OK, 0 rows affected (0.019 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [permainan]> DESC sepakbola;
++-------------+--------------+------+-----+---------+----------------+
+| Field       | Type         | Null | Key | Default | Extra          |
++-------------+--------------+------+-----+---------+----------------+
+| id_pemain   | int(11)      | NO   | PRI | NULL    | auto_increment |
+| nama_pemain | varchar(100) | NO   |     | NULL    |                |
++-------------+--------------+------+-----+---------+----------------+
+2 rows in set (0.022 sec)
+
+MariaDB [permainan]> ALTER TABLE sepakbola
+    -> ADD (usia_pemain INT(2) NOT NULL)
+    -> ADD (posisi_pemain VARCHAR(50) NOT NULL);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'ADD (posisi_pemain VARCHAR(50) NOT NULL)' at line 3
+MariaDB [permainan]> ADD (usia_pemain INT(2) NOT NULL)
+    -> , (posisi_pemain VARCHAR(50) NOT NULL);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'ADD (usia_pemain INT(2) NOT NULL)
+, (posisi_pemain VARCHAR(50) NOT NULL)' at line 1
+MariaDB [permainan]> ALTER TABLE sepakbola
+    -> ADD (usia_pemain INT(2) NOT NULL), (posisi_pemain VARCHAR(50) NOT NULL);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '(posisi_pemain VARCHAR(50) NOT NULL)' at line 2
+MariaDB [permainan]> ALTER TABLE sepakbola
+    -> ADD (usia_pemain INT(2) NOT NULL);
+Query OK, 0 rows affected (0.016 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [permainan]> ALTER TABLE sepakbola
+    -> ADD (posisi_pemain VARCHAR(50) NOT NULL);
+Query OK, 0 rows affected (0.018 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [permainan]> DESC sepakbola;
++---------------+--------------+------+-----+---------+----------------+
+| Field         | Type         | Null | Key | Default | Extra          |
++---------------+--------------+------+-----+---------+----------------+
+| id_pemain     | int(11)      | NO   | PRI | NULL    | auto_increment |
+| nama_pemain   | varchar(100) | NO   |     | NULL    |                |
+| usia_pemain   | int(2)       | NO   |     | NULL    |                |
+| posisi_pemain | varchar(50)  | NO   |     | NULL    |                |
++---------------+--------------+------+-----+---------+----------------+
+4 rows in set (0.024 sec)
+
+MariaDB [permainan]> RENAME TABLE sepakbola TO sepakbola_indonesia;
+Query OK, 0 rows affected (0.017 sec)
+
+MariaDB [permainan]> DESC sepakbola_indonesia;
++---------------+--------------+------+-----+---------+----------------+
+| Field         | Type         | Null | Key | Default | Extra          |
++---------------+--------------+------+-----+---------+----------------+
+| id_pemain     | int(11)      | NO   | PRI | NULL    | auto_increment |
+| nama_pemain   | varchar(100) | NO   |     | NULL    |                |
+| usia_pemain   | int(2)       | NO   |     | NULL    |                |
+| posisi_pemain | varchar(50)  | NO   |     | NULL    |                |
++---------------+--------------+------+-----+---------+----------------+
+4 rows in set (0.025 sec)
+
+MariaDB [permainan]> DROP TABLE IF EXISTS sepakbola_indonesia;
+Query OK, 0 rows affected (0.013 sec)
+
+MariaDB [permainan]> DESC sepakbola_indonesia;
+ERROR 1146 (42S02): Table 'permainan.sepakbola_indonesia' doesn't exist
+MariaDB [permainan]> DESC IF EXISTS sepakbola_indonesia;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'IF EXISTS sepakbola_indonesia' at line 1
+MariaDB [permainan]>
